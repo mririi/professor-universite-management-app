@@ -1,0 +1,35 @@
+<div class="container mt-5 ">
+  <div>
+    <h2 class="mb-5 title">Ajouter un Professor : </h2>
+  </div>
+  <form>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Professor</label>
+      <input type="text" [(ngModel)]="newProfessor.nom" name="nom" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Prenom Professor</label>
+      <input type="text" [(ngModel)]="newProfessor.prenom" name="prenom" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date Entrée</label>
+      <input type="date" [(ngModel)]="newProfessor.dateEntree" name="dateEntree" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Matiére</label>
+      <input type="text" [(ngModel)]="newProfessor.matiere" name="Matiere" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Université </label>
+      <select class="form-control" id="idUni" [(ngModel)]="newProfessor.universite"
+              [ngModelOptions]="{standalone: true}">
+        <option [selected]="true">--Select Université--</option>
+        <option *ngFor="let uni of universityList" [ngValue]="uni">{{ uni.nom }}</option>
+      </select>
+    </div>
+    <div class="col-sm-4 btn">
+      <button type="submit" (click)="addProfessor()" class="btn btn-primary">Ajouter</button>
+    </div>
+  </form>
+</div>
+

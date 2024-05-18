@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="mb-5">
+        <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search"> <i
+        class="bi bi-search ml-3"></i>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Date Entree</th>
+          <th>Matiére</th>
+          <th>Université</th>
+          <th *ngIf="authService.isAdmin()">Supprimer</th>
+          <th *ngIf="authService.isAdmin()">Modifier</th>
+        </tr>
+        <tbody *ngFor="let professor of professors | filter:searchText">
+        <tr>
+          <td>
+            {{ professor.nom }}
+          </td>
+          <td>
+            {{ professor.prenom }}
+          </td>
+          <td>
+            {{ professor.dateEntree |date: 'dd/MM/yyyy' }}
+          </td>
+          <td>
+            {{ professor.matiere }}
+          </td>
+          <td>
+            {{ professor.universite.nom }}
+          </td>
+          <td *ngIf="authService.isAdmin()">
+            <a class="btn btn-danger"
+               (click)="supprimerProfessor(professor)">
+              <i class="bi bi-trash-fill"> Supprimer</i>
+            </a>
+          </td>
+          <td *ngIf="authService.isAdmin()">
+            <a class="btn btn-success"
+               [routerLink]="['/updateProfessor',professor.idProfessor]">
+              <i class="bi bi-pen-fill"> Modifier</i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

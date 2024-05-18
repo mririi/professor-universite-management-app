@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <div>
+    <h2 class="mb-5 title">Modifier {{ currentProfessor.prenom }} :</h2>
+  </div>
+
+  <form>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Professor</label>
+      <input
+        type="text"
+        [(ngModel)]="currentProfessor.nom"
+        name="nom"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Prenom Professor</label>
+      <input
+        type="text"
+        [(ngModel)]="currentProfessor.prenom"
+        name="prenom"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date Entrée</label>
+      <input
+        type="date"
+        [ngModel]="currentProfessor.dateEntree | date: 'yyyy-MM-dd'"
+        (ngModelChange)="currentProfessor.dateEntree = $event"
+        name="dateEntree"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Matiere</label>
+      <input
+        type="text"
+        [ngModel]="currentProfessor.matiere"
+        name="matiere"
+        class="form-control"
+      />
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Université </label>
+      <select
+        class="form-control"
+        id="idUni"
+        name="idUni"
+        [(ngModel)]="idUni"
+      >
+        <option *ngFor="let uni of universityList" [value]="uni.idUni">
+          {{ uni.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mt-2 btn">
+      <button type="button" (click)="updateProfessor()" class="btn btn-primary">
+        Modifier
+      </button>
+    </div>
+  </form>
+</div>
